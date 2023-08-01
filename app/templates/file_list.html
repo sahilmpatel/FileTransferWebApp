@@ -20,7 +20,7 @@
                     {% for file in files_list %}
                     <tr scope="row">
                       <td class="list-group-item">
-                          <a target="_blank" href="{{ url_for('download_file',  name=file[1]) }}" class="btn btn-link">{{ file[0] }}</a>
+                          <a target="_blank" href="{{ url_for('download_file',  path=file[1]) }}" class="btn btn-link">{{ file[0] }}</a>
                       </td>
                     </tr>
                     {% endfor %}

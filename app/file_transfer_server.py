@@ -66,9 +66,13 @@ def filelist():
     return render_template('file_list.html', files_list=files_list)
 
 
-@app.route('/filelist/<path:name>')
-def download_file(name):
-    return send_file(name, as_attachment=True)
+@app.route('/download_file')
+def download_file():
+    file_path = request.args.get('path', type=str)
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "File not found."
 
 
 if __name__ == '__main__':
