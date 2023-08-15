@@ -18,6 +18,33 @@
                 formData.append('files[]', file);
             });
 
+            function showMessage(message, isSuccess) {
+                const modalHtml = `
+                    <div class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">${isSuccess ? "Success" : "Error"}</h5>
+                                </div>
+                                <div class="modal-body">${message}</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                const modal = $(modalHtml);
+                const modalButton = modal.find('.modal-footer button');
+
+                modalButton.on('click', function() {
+                    $('#modalDialog').empty();
+                });
+
+                $('#modalDialog').append(modal);
+                modal.modal('show');
+            }
+
             // Single Axios API call for all files with progress tracking
             axios.post('/upload', formData, {
                 headers: {
@@ -30,12 +57,12 @@
                 }
             })
             .then(response => {
-                alert(response.data.message);
+                showMessage(response.data.message, true);
                 $("#fileInput").val("");
                 $("#progressContainer").empty();
             })
             .catch(error => {
-                alert(error.response.data.error);
+                showMessage(error.response.data.error, false);
             });
         });
  });

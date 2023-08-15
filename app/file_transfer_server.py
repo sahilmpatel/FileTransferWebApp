@@ -49,12 +49,12 @@ def upload():
 
             folder = filedialog.askdirectory(title="Select a Folder to save Files")
             for file in files:
-                print(f"\n file.filename:::{file.filename} \n")
+                print(f"\n filename:::{file.filename} \n")
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(folder, filename))
             return jsonify({'message': 'Files uploaded successfully!'}), 200
 
-        return render_template('index.html')
+        return render_template('upload.html')
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
