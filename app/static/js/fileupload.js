@@ -4,6 +4,7 @@
             event.preventDefault();
             let formData = new FormData();
             let files = $('#fileInput')[0].files;
+             $("input[type=submit]")[0].disabled  = true;
 
             if (files.length!==0) {
                 let progressBar = `
@@ -43,6 +44,7 @@
 
                 $('#modalDialog').append(modal);
                 modal.modal('show');
+                $("input[type=submit]")[0].disabled  = false;
             }
 
             // Single Axios API call for all files with progress tracking
