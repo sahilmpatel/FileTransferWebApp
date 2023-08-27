@@ -41,6 +41,8 @@ def index():
 def upload():
     try:
         if request.method == 'POST':
+            if int(request.headers.get("Numoffiles")) > 1000:
+                request.max_form_parts = 5000 * 1024 * 1024  # approx 5.24288 GB (for large number of files)
             files = request.files.getlist('files[]')
             files = [file for file in files if file.filename]
             if not files:

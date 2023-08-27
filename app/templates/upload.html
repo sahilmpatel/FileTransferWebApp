@@ -12,7 +12,10 @@
                   <h1>File Share</h1>
                   <a href="{{ url_for('filelist') }}" class="btn btn-link text-decoration-none"
                      aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="right"
-                     title="Select a Folder to share Files.">Downloads</a>
+                     title="Select a Folder to share Files.">
+                      Downloads
+                      <i class="fa-solid fa-download fa-flip"></i>
+                  </a>
               </div>
               <div class="card-body">
                   <form style="text-align: center;" class="form-group" action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">

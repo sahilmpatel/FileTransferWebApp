@@ -50,7 +50,8 @@
             // Single Axios API call for all files with progress tracking
             axios.post('/upload', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'NumOfFiles' : files.length
                 },
                 onUploadProgress: function(progressEvent) {
                     let percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
